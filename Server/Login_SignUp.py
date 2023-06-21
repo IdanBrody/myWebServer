@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, request, url_for
-from Database.Users.Creating_User import create_user, check_user_exists, check_email_exists
-from Database.Users.Login_User import login_user
+from myWebServer.Database.Users.Creating_User import create_user, check_user_exists, check_email_exists
+from myWebServer.Database.Users.Login_User import login_user
 
 
 def handle_login():

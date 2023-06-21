@@ -1,4 +1,4 @@
-from Database.MySQL_Connection import connect_to_database
+from myWebServer.Database.MySQL_Connection import connect_to_database
 import mysql.connector
 
 
