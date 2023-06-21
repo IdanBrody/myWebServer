@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login / Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="./login.css">
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="{{ url_for('login') }}" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <hr>
+    <h1>Sign Up</h1>
+    <form action="{{ url_for('sign_up') }}" method="POST">
+        <label for="new_username">Username:</label>
+        <input type="text" id="new_username" name="new_username">
+        <br>
+        <label for="new_password">Password:</label>
+        <input type="password" id="new_password" name="new_password">
+        <br>
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password">
+        <br>
+        <input type="submit" value="Sign Up">
+    </form>
+</body>
+</html>
