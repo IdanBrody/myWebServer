@@ -1,11 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #8a4baf;
-
 }
+
 h1 {
     text-align: center;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -54,6 +55,11 @@ td img {
     border-radius: 10px;
     z-index: 1;
     position: relative;
+    transition: transform 0.3s ease;
+}
+
+td img:hover {
+    transform: scale(1.1);
 }
 
 td img::before,
