@@ -1,7 +1,8 @@
-from flask import render_template, flash, redirect, request, url_for
+from flask import render_template, flash, redirect, request, url_for, jsonify
 from Database.Users.Creating_User import create_user, check_user_exists, check_email_exists
 from Database.Users.Login_User import login_user
 from passlib.hash import sha256_crypt
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
 
 def handle_login():
@@ -12,8 +13,9 @@ def handle_login():
         # Check the credentials using login_user function
         if login_user(username, password):
             # Authentication successful
+            access_token = create_access_token(identity=username)
             flash('Login successful!', 'success')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('index')), jsonify({'access_token': access_token})
         else:
             # Authentication failed
             flash('Invalid username or password. Please try again.', 'error')
