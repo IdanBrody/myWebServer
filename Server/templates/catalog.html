@@ -20,7 +20,7 @@
 <div class="container">
     {% for product in products %}
     <div class="image-item">
-        <img src="{{ product.image_link }}">
+        <img src="{{ product[0] }}">
     </div>
     {% endfor %}
 </div>

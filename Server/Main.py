@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+
+import Database.MySQL_Connection
 from Server.Login_SignUp import handle_sign_up, handle_login
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import os
@@ -48,8 +50,13 @@ def dashboard():
 @app.route('/catalog', methods=['GET'])
 @jwt_required(optional=True)
 def catalog():
+    connection = Database.MySQL_Connection.connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT product_link FROM products"
+    cursor.execute(query)
+    products = cursor.fetchall()
     user_name = get_jwt_identity() or "Guest"
-    return render_template('catalog.html', user_name=user_name)
+    return render_template('catalog.html', user_name=user_name, products=products)
 
 
 @app.route('/contact', methods=['GET'])
