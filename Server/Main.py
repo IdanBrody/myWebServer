@@ -4,6 +4,7 @@ import Database.MySQL_Connection
 from Server.Login_SignUp import handle_sign_up, handle_login
 
 
+
 app = Flask(__name__)
 app.secret_key = "idan2001"
 

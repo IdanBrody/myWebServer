@@ -1,4 +1,5 @@
 from Database.MySQL_Connection import connect_to_database
+from passlib.hash import sha256_crypt
 
 
 def login_user(username, password):
@@ -7,21 +8,18 @@ def login_user(username, password):
 
     # Create a cursor object to execute SQL queries
     cursor = connection.cursor()
-
     # SQL query to check if the user exists
-    query = "SELECT * FROM users WHERE username = %s AND password = %s"
-    values = (username, password)
-
+    query = "SELECT * FROM users WHERE username = %s"
     # Execute the query and fetch the result
-    cursor.execute(query, values)
+    cursor.execute(query, username)
     result = cursor.fetchone()
 
     # Close the cursor and connection
     cursor.close()
     connection.close()
 
-    # Check if the result is not None (user exists)
-    if result is not None:
+    # Check if the result is not None (user exists) and password is correct
+    if result is not None and sha256_crypt.verify(password, result["password"]):
         return True
     else:
         return False

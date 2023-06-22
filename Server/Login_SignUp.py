@@ -1,6 +1,7 @@
 from flask import render_template, flash, redirect, request, url_for
 from Database.Users.Creating_User import create_user, check_user_exists, check_email_exists
 from Database.Users.Login_User import login_user
+from passlib.hash import sha256_crypt
 
 
 def handle_login():
@@ -43,6 +44,9 @@ def handle_sign_up():
         if password != confirm_password:
             flash('Passwords do not match. Please try again.', 'error')
             return redirect('/sign_up')  # Replace '/sign_up' with your desired sign-up page URL
+
+        # encrypt the password
+        password = sha256_crypt.encrypt(password)
 
         # Create the user in the database
         create_user(username, password, email)
