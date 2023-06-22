@@ -41,6 +41,9 @@ def dashboard():
 def catalog():
     return render_template('catalog.html')
 
+@app.route('/contact', methods=['GET'])
+def contact():
+    return render_template('contact.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
