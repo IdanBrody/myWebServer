@@ -93,3 +93,15 @@ li a:hover:not(.active) {
 .image-item:hover::after {
     opacity: 1;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.username {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

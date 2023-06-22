@@ -15,7 +15,7 @@ def handle_login():
             # Authentication successful
             access_token = create_access_token(identity=username)
             flash('Login successful!', 'success')
-            return redirect(url_for('index')), jsonify({'access_token': access_token})
+            return redirect(url_for('index'))
         else:
             # Authentication failed
             flash('Invalid username or password. Please try again.', 'error')

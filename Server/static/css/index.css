@@ -69,3 +69,15 @@ td img::before {
     border-color: #04AA6D;
     opacity: 0.5;
 }
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.username {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
