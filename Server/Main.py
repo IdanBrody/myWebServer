@@ -11,8 +11,9 @@ app.secret_key = "idan2001"
 
 
 # Route for Home
-@jwt_required(optional=True)
+
 @app.route("/index")
+@jwt_required(optional=True)
 @app.route('/')
 def index():
     user_name = get_jwt_identity() or "Guest"
@@ -44,8 +45,8 @@ def dashboard():
 
 
 # Route for catalog
-@jwt_required(optional=True)
 @app.route('/catalog', methods=['GET'])
+@jwt_required(optional=True)
 def catalog():
     user_name = get_jwt_identity() or "Guest"
     return render_template('catalog.html', user_name=user_name)
