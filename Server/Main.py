@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from Server.Login_SignUp import handle_sign_up, handle_login
 
 
+
 app = Flask(__name__)
 app.secret_key = "idan2001"
 
