@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+
+import Database.MySQL_Connection
 from Server.Login_SignUp import handle_sign_up, handle_login
 
 
@@ -39,7 +41,12 @@ def dashboard():
 # Route for catalog
 @app.route('/catalog', methods=['GET'])
 def catalog():
-    return render_template('catalog.html')
+    connection = Database.MySQL_Connection.connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT product_link FROM products"
+    cursor.execute(query)
+    products = [{'image_link': row[0]} for row in cursor.fetchall()]
+    return render_template('catalog.html', products=products)
 
 @app.route('/contact', methods=['GET'])
 def contact():

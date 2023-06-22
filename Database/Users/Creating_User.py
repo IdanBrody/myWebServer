@@ -55,6 +55,7 @@ def check_email_exists(email):
     else:
         return False
 
+
 def create_user(username, password, email):
     # Get a connection to the database
     connection = connect_to_database()
