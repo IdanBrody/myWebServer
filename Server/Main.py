@@ -9,7 +9,9 @@ app.config["JWT_SECRET_KEY"] = secret_key
 jwt = JWTManager(app)
 app.secret_key = "idan2001"
 
+
 # Route for Home
+@jwt_required(optional=True)
 @app.route("/index")
 @app.route('/')
 def index():
@@ -42,6 +44,7 @@ def dashboard():
 
 
 # Route for catalog
+@jwt_required(optional=True)
 @app.route('/catalog', methods=['GET'])
 def catalog():
     user_name = get_jwt_identity() or "Guest"
@@ -49,6 +52,7 @@ def catalog():
 
 
 @app.route('/contact', methods=['GET'])
+@jwt_required(optional=True)
 def contact():
     user_name = get_jwt_identity() or "Guest"
     return render_template('contact.html', user_name=user_name)
