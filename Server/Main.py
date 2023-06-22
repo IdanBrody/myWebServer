@@ -6,6 +6,7 @@ app = Flask(__name__)
 app.secret_key = "idan2001"
 
 # Route for Home
+@app.route("/index")
 @app.route('/')
 def index():
     # Render the index.html template
@@ -33,6 +34,12 @@ def sign_up():
 @app.route('/dashboard')
 def dashboard():
     return 'Welcome to the Dashboard!'
+
+
+# Route for catalog
+@app.route('/catalog', methods=['GET'])
+def catalog():
+    return render_template('catalog.html')
 
 
 if __name__ == '__main__':

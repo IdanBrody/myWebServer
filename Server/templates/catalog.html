@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catalog</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/catalog.css') }}">
+</head>
+<body>
+    <h1>Catalog</h1>
+
+    <ul>
+        <li><a href="/index">Home</a></li>
+        <li><a class="active" href="#catalog">Catalog</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="/login">Log-in</a></li>
+    </ul>
+    <br><br>
+    <table>
+        <tr>
+            <td>
+                <img src="{{ url_for('static', filename='images/airforce.jpeg') }}">
+            </td>
+            <td>
+                <img src="{{ url_for('static', filename='images/airjordan_1.jpeg') }}">
+            </td>
+            <td>
+                <img src="{{ url_for('static', filename='images/red_nike.jpeg') }}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="{{ url_for('static', filename='images/high_converse.jpeg') }}">
+            </td>
+            <td>
+                <img src="{{ url_for('static', filename='images/green_gazelle.jpeg') }}">
+            </td>
+            <td>
+                <img src="{{ url_for('static', filename='images/reebok_1.jpeg') }}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="{{ url_for('static', filename='images/pink_nike.jpeg') }}">
+            </td>
+            <td>
+                <img src="{{ url_for('static', filename='images/puma_1.jpeg') }}">
+            </td>
+            <td>
+                <img src="{{ url_for('static', filename='images/new_balance.jpeg') }}">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
