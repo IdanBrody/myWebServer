@@ -3,10 +3,9 @@ from flask import Flask, render_template, request
 import Database.MySQL_Connection
 from Server.Login_SignUp import handle_sign_up, handle_login
 
-
-
 app = Flask(__name__)
 app.secret_key = "idan2001"
+
 
 # Route for Home
 @app.route("/index")
@@ -49,9 +48,11 @@ def catalog():
     products = [{'image_link': row[0]} for row in cursor.fetchall()]
     return render_template('catalog.html', products=products)
 
+
 @app.route('/contact', methods=['GET'])
 def contact():
     return render_template('contact.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
