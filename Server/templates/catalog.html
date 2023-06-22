@@ -5,23 +5,25 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/catalog.css') }}">
 </head>
 <body>
+<div class="header">
     <h1>Catalog</h1>
-    <h6>{{ user_name }}</h6>
-    <ul>
-        <li><a href="/index">Home</a></li>
-        <li><a class="active" href="#catalog">Catalog</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="/login">Log-in</a></li>
-    </ul>
-    <br><br>
-    <div class="container">
-        {% for product in products %}
-        <div class="image-item">
-            <img src="{{ product.image_link }}">
-        </div>
-        {% endfor %}
+    <h3 class="username">{{ user_name }}</h3>
+</div>
+<ul>
+    <li><a href="/index">Home</a></li>
+    <li><a class="active" href="#catalog">Catalog</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="/login">Log-in</a></li>
+</ul>
+<br><br>
+<div class="container">
+    {% for product in products %}
+    <div class="image-item">
+        <img src="{{ product.image_link }}">
     </div>
+    {% endfor %}
+</div>
 </body>
 </html>
 

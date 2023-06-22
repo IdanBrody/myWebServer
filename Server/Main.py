@@ -13,8 +13,8 @@ app.secret_key = "idan2001"
 # Route for Home
 
 @app.route("/index")
-@jwt_required(optional=True)
 @app.route('/')
+@jwt_required(optional=True)
 def index():
     user_name = get_jwt_identity() or "Guest"
     # Render the index.html template
