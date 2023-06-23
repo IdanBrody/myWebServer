@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, request, url_for, jsonify
+from flask import render_template, flash, redirect, request, url_for, jsonify, session
 from Database.Users.Creating_User import create_user, check_user_exists, check_email_exists
 from Database.Users.Login_User import login_user
 from passlib.hash import sha256_crypt
@@ -14,7 +14,9 @@ def handle_login():
         if login_user(username, password):
             # Authentication successful
             access_token = create_access_token(identity=username)
+            session['user_name'] = username
             flash('Login successful!', 'success')
+            print(username)
             return redirect(url_for('index'))
         else:
             # Authentication failed

@@ -1,15 +1,14 @@
-from flask import Flask, render_template, request
-
-import Database.MySQL_Connection
+from flask import Flask, render_template, request, session
 from Server.Login_SignUp import handle_sign_up, handle_login
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from Catalog import handle_catalog
 import os
 
 secret_key = os.urandom(32)
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = secret_key
 jwt = JWTManager(app)
-app.secret_key = "idan2001"
+app.secret_key = secret_key
 
 
 # Route for Home
@@ -18,7 +17,9 @@ app.secret_key = "idan2001"
 @app.route('/')
 @jwt_required(optional=True)
 def index():
-    user_name = get_jwt_identity() or "Guest"
+    #user_name = get_jwt_identity() or "Guest"
+    user_name = session.get("user_name", "Guest")
+    print(user_name)
     # Render the index.html template
     return render_template('index.html', user_name=user_name)
 
@@ -41,28 +42,17 @@ def sign_up():
         return handle_sign_up()
 
 
-@app.route('/dashboard')
-def dashboard():
-    return 'Welcome to the Dashboard!'
-
-
 # Route for catalog
 @app.route('/catalog', methods=['GET'])
 @jwt_required(optional=True)
 def catalog():
-    connection = Database.MySQL_Connection.connect_to_database()
-    cursor = connection.cursor()
-    query = "SELECT product_link FROM products"
-    cursor.execute(query)
-    products = cursor.fetchall()
-    user_name = get_jwt_identity() or "Guest"
-    return render_template('catalog.html', user_name=user_name, products=products)
-
+    user_name = session.get("user_name", "Guest")
+    return handle_catalog(user_name)
 
 @app.route('/contact', methods=['GET'])
 @jwt_required(optional=True)
 def contact():
-    user_name = get_jwt_identity() or "Guest"
+    user_name = session.get("user_name", "Guest")
     return render_template('contact.html', user_name=user_name)
 
 
