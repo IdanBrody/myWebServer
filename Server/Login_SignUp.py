@@ -44,11 +44,6 @@ def handle_sign_up():
             flash('Email already exists. Please use a different email.', 'error')
             return redirect(url_for('sign_up'))
 
-        # Validate password and confirm_password
-        if password != confirm_password:
-            flash('Passwords do not match. Please try again.', 'error')
-            return redirect('/sign_up')  # Replace '/sign_up' with your desired sign-up page URL
-
         # encrypt the password
         password = sha256_crypt.encrypt(password)
 
