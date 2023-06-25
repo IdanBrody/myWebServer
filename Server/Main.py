@@ -44,7 +44,12 @@ def sign_up():
 @app.route('/catalog', methods=['GET'])
 def catalog():
     user_name = session.get("user_name", "Guest")
-    return handle_catalog(user_name)
+
+    # Get the filters from the request
+    category_filter = request.args.get('category')
+    vendor_filter = request.args.get('vendor')
+    gender_filter = request.args.get('gender')
+    return handle_catalog(user_name, category_filter, vendor_filter, gender_filter)
 
 
 @app.route('/contact', methods=['GET'])
