@@ -16,4 +16,4 @@ def handle_catalog(user_name, category_filter, vendor_filter, gender_filter):
     cursor = connection.cursor()
     cursor.execute(query)
     products = cursor.fetchall()
-    return render_template('catalog.html', user_name=user_name, products=products)
+    return render_template('catalog.html', user_name=user_name, products=products, category=category_filter, vendor=vendor_filter, gender=gender_filter)

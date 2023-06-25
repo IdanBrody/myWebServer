@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/catalog.css') }}">
 </head>
 <body>
+{% if session.logged_in %}
+    <a class="logout-button" href="{{ url_for('logout') }}">Logout</a>
+{% endif %}
 <div class="header">
     <h1>Catalog</h1>
     <h3 class="username">{{ user_name }}</h3>
@@ -22,28 +25,26 @@
     <form action="/catalog" method="GET">
         <label for="category">Category:</label>
         <select id="category" name="category">
-            <option value="">All</option>
-            <option value="Sneakers">Sneakers</option>
-            <option value="Boots">Boots</option>
-            <option value="Sport">Sport</option>
-            <option value="Flip Flops">Flip Flops</option>
-
-
+          <option value="" {% if category == '' %}selected{% endif %}>All</option>
+            <option value="Sneakers" {% if category == 'Sneakers' %}selected{% endif %}>Sneakers</option>
+            <option value="Boots" {% if category == 'Boots' %}selected{% endif %}>Boots</option>
+            <option value="Sport" {% if category == 'Sport' %}selected{% endif %}>Sport</option>
+            <option value="Flip Flops" {% if category == 'Flip Flops' %}selected{% endif %}>Flip Flops</option>
         </select>
 
         <label for="vendor">Vendor:</label>
         <select id="vendor" name="vendor">
-            <option value="">All</option>
-            <option value="Nike">Nike</option>
-            <option value="Adidas">Adidas</option>
+            <option value="" {% if vendor == '' %}selected{% endif %}>All</option>
+            <option value="Nike" {% if vendor == 'Nike' %}selected{% endif %}>Nike</option>
+            <option value="Adidas" {% if vendor == 'Adidas' %}selected{% endif %}>Adidas</option>
 
         </select>
 
         <label for="gender">Gender:</label>
         <select id="gender" name="gender">
-            <option value="">All</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option value="" {% if gender == '' %}selected{% endif %}>All</option>
+            <option value="Male" {% if gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if gender == 'Female' %}selected{% endif %}>Female</option>
         </select>
 
         <input type="submit" value="Filter">
