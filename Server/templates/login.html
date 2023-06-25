@@ -29,7 +29,6 @@
     <br>
     <input type="submit" value="Login">
 </form>
-{% endif %}
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 <ul class="messages">
@@ -39,7 +38,6 @@
 </ul>
 {% endif %}
 {% endwith %}
-{% if user_name == "Guest" %}
 <hr>
 <h1>Sign Up</h1>
 <h3></h3>
