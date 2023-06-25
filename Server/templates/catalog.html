@@ -17,6 +17,39 @@
     <li><a href="/login">Log-in</a></li>
 </ul>
 <br><br>
+
+<div class="filter-container">
+    <form action="/catalog" method="GET">
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            <option value="">All</option>
+            <option value="Sneakers">Sneakers</option>
+            <option value="Boots">Boots</option>
+            <option value="Sport">Sport</option>
+            <option value="Flip Flops">Flip Flops</option>
+
+
+        </select>
+
+        <label for="vendor">Vendor:</label>
+        <select id="vendor" name="vendor">
+            <option value="">All</option>
+            <option value="Nike">Nike</option>
+            <option value="Adidas">Adidas</option>
+
+        </select>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="">All</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <input type="submit" value="Filter">
+    </form>
+</div>
+
 <div class="container">
     {% for product in products %}
     <div class="image-item">
