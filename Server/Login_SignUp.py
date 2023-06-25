@@ -15,6 +15,7 @@ def handle_login():
             # Authentication successful
             access_token = create_access_token(identity=username)
             session['user_name'] = username
+            session['logged_in'] = True
             flash('Login successful!', 'success')
             return redirect(url_for('index'))
         else:
