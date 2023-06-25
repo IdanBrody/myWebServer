@@ -4,7 +4,7 @@ from flask import render_template
 
 
 def handle_catalog(user_name, category_filter, vendor_filter, gender_filter):
-    query = "SELECT product_link FROM products WHERE 1=1"
+    query = "SELECT * FROM products WHERE 1=1"
     if category_filter:
         query += " AND category = '{}'".format(category_filter)
     if vendor_filter:
@@ -16,4 +16,5 @@ def handle_catalog(user_name, category_filter, vendor_filter, gender_filter):
     cursor = connection.cursor()
     cursor.execute(query)
     products = cursor.fetchall()
+    print(products)
     return render_template('catalog.html', user_name=user_name, products=products, category=category_filter, vendor=vendor_filter, gender=gender_filter)

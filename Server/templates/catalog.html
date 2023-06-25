@@ -25,7 +25,7 @@
     <form action="/catalog" method="GET">
         <label for="category">Category:</label>
         <select id="category" name="category">
-          <option value="" {% if category == '' %}selected{% endif %}>All</option>
+            <option value="" {% if category == '' %}selected{% endif %}>All</option>
             <option value="Sneakers" {% if category == 'Sneakers' %}selected{% endif %}>Sneakers</option>
             <option value="Boots" {% if category == 'Boots' %}selected{% endif %}>Boots</option>
             <option value="Sport" {% if category == 'Sport' %}selected{% endif %}>Sport</option>
@@ -54,7 +54,9 @@
 <div class="container">
     {% for product in products %}
     <div class="image-item">
-        <img src="{{ product[0] }}">
+        <h4 class="product-name">{{ product[1] }}</h4>
+        <img src="{{ product[2] }}">
+        <h4 class="product-price">Price: {{ product[5] }}</h4>
     </div>
     {% endfor %}
 </div>
