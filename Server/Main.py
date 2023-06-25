@@ -26,7 +26,10 @@ def index():
 
 # Route for login
 @app.route('/login', methods=['GET', 'POST'])
+@jwt_required(optional=True)
 def login():
+    if request.method == 'GET' and session.get("user_name") != "Guest":
+        return render_template('logged_in.html')
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':

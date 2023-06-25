@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+    <h1>Login</h1>
+    <ul>
+        <li><a href="/index">Home</a></li>
+        <li><a href="/catalog">Catalog</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a class="active" href="/login">Log-in</a></li>
+    </ul>
+    <h1>Hello {{ user_name }}, you are already logged in</h1>
+    <hr>
+    <h1>Sign Up</h1>
+    <h3></h3>
+    <a href="{{ url_for('sign_up') }}">Create a new account</a>
+</body>
+</html>
