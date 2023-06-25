@@ -60,6 +60,9 @@ li a:hover:not(.active) {
 }
 
 .image-item img {
+    max-height: 350px;
+    max-width: 350px;
+    padding: 100px;
     width: 85%;
     border-radius: 10px;
     transition: transform 0.3s ease;
