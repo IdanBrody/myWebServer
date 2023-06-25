@@ -46,10 +46,17 @@ def catalog():
     user_name = session.get("user_name", "Guest")
     return handle_catalog(user_name)
 
+
 @app.route('/contact', methods=['GET'])
 def contact():
     user_name = session.get("user_name", "Guest")
     return render_template('contact.html', user_name=user_name)
+
+
+@app.route('/logout')
+def logout():
+    session.clear()  # Clear the session data
+    return render_template('index.html')
 
 
 if __name__ == '__main__':

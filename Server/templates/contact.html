@@ -9,6 +9,9 @@
     </style>
 </head>
 <body>
+{% if session.logged_in %}
+    <a class="logout-button" href="{{ url_for('logout') }}">Logout</a>
+{% endif %}
 <div class="header">
     <h1>Leave us a message</h1>
     <h3 class="username">{{ user_name }}</h3>
