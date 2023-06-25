@@ -57,7 +57,6 @@ li a:hover:not(.active) {
     overflow: hidden;
     padding-right: 20px;
     padding-left: 20px;
-
 }
 
 .image-item img {
@@ -95,13 +94,46 @@ li a:hover:not(.active) {
 }
 
 .header {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .username {
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.filter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+.filter-form select {
+  margin: 0 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.filter-form button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-form button:hover {
+  background-color: #047357;
+}
+
+.filter-form label {
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
 }
