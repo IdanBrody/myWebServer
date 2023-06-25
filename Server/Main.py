@@ -61,7 +61,7 @@ def contact():
 @app.route('/logout')
 def logout():
     session.clear()  # Clear the session data
-    return render_template('index.html')
+    return render_template('index.html', user_name="Guest")
 
 
 if __name__ == '__main__':
