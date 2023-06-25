@@ -36,9 +36,11 @@
 </ul>
 {% endif %}
 {% endwith %}
+{% if user_name == "Guest" %}
 <hr>
 <h1>Sign Up</h1>
 <h3></h3>
 <a href="{{ url_for('sign_up') }}">Create a new account</a>
+{% endif %}
 </body>
 </html>
