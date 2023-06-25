@@ -4,49 +4,75 @@
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sign_up.css') }}">
     <script>
-       function validatePass() {
-        var password = document.getElementById("password").value;
-        var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
-        if (regex.test(password)) {
-            return true;
+        function validatePassword() {
+            var password = document.getElementById('password').value;
+            var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
+            if (!regex.test(password)) {
+                alert("Password should contain 8-16 characters of English letters and numbers (0-9) and MUST contain at least one capital letter, one non-capital letter, and one digit");
+                return false;
+            } else {
+                return true;
+            }
         }
-        else {
-            alert("Password can contain 8-16 charecters of english letters and digits (0-9) and MUST contain at least one capital letter, on non-capital letter and one digit");
+
+        function validateUsername() {
+            var username = document.getElementById('username').value;
+            var regex = /[a-zA-Z][a-zA-Z0-9]{3,11}/;
+            if (!regex.test(username)) {
+                alert("User name can contain only 4-12 letters or digits and must start with a letter");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        function validateForm() {
+             if (!validateUsername() || !validatePassword()) {
             return false;
         }
-    }
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm_password').value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return false;
+            }
+            return true;
+        }
+
+
     </script>
 </head>
 <body>
-    <h1>Sign Up</h1>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    <form action="{{ url_for('sign_up') }}" onsubmit="return validatePass()" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <label for="confirm_password">Confirm Password:</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-        <br>
-        <input type="submit" value="Sign Up">
-    </form>
-    <hr>
-    <h1>Login</h1>
-    <a href="{{ url_for('login') }}">Already have an account? Login here</a>
-    <h1></h1>
-    <a href="{{ url_for('index') }}">Back to Home page</a>
+<h1>Sign Up</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<form action="{{ url_for('sign_up') }}" onsubmit="return validateForm()" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" required>
+    <br>
+    <input type="submit" value="Sign Up">
+</form>
+<hr>
+<h1>Login</h1>
+<a href="{{ url_for('login') }}">Already have an account? Login here</a>
+<h1></h1>
+<a href="{{ url_for('index') }}">Back to Home page</a>
 </body>
 </html>
