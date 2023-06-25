@@ -3,6 +3,19 @@
 <head>
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sign_up.css') }}">
+    <script>
+       function validatePass() {
+        var password = document.getElementById("password").value;
+        var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
+        if (regex.test(password)) {
+            return true;
+        }
+        else {
+            alert("Password can contain 8-16 charecters of english letters and digits (0-9) and MUST contain at least one capital letter, on non-capital letter and one digit");
+            return false;
+        }
+    }
+    </script>
 </head>
 <body>
     <h1>Sign Up</h1>
@@ -15,7 +28,7 @@
     </ul>
     {% endif %}
     {% endwith %}
-    <form action="{{ url_for('sign_up') }}" method="POST">
+    <form action="{{ url_for('sign_up') }}" onsubmit="return validatePass()" method="POST">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <br>
