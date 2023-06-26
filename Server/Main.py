@@ -64,5 +64,10 @@ def logout():
     return render_template('index.html', user_name="Guest")
 
 
+@app.route('/add_to_cart')
+def add_to_cart():
+    pass
+
+
 if __name__ == '__main__':
     app.run(debug=True)
