@@ -1,6 +1,9 @@
-from flask import session, redirect, url_for
+from flask import session, redirect, url_for, request
 
 
 def add_item_to_cart(product_id):
-    session['shopping_cart'].append(product_id)
-    return redirect(url_for('catalog'))
+    if 'Shopping_Cart' not in session:
+        session['Shopping_Cart'] = []
+    session['Shopping_Cart'].append(product_id)
+    print("shopping cart: ", session['Shopping_Cart'])
+    return "Product added successfully"

@@ -18,6 +18,17 @@
                 }
             });
         }
+        document.addEventListener('DOMContentLoaded', function() {
+        var tooltips = document.querySelectorAll('.tooltip');
+
+        tooltips.forEach(function(tooltip) {
+            tooltip.addEventListener('mousemove', function(e) {
+                var tooltipText = this.querySelector('.tooltip-text');
+                tooltipText.style.top = (e.clientY + 10) + 'px';
+                tooltipText.style.left = (e.clientX + 10) + 'px';
+            });
+        });
+    });
     </script>
 </head>
 <body>
@@ -71,8 +82,9 @@
     {% for product in products %}
     <div class="image-item">
         <h4 class="product-name">{{ product[1] }}</h4>
-        <a href="# add to cart" onclick="addToCart({{ product[0] }})">
+        <a href="#" onclick="addToCart({{ product[0] }})" class="tooltip">
             <img src="{{ product[2] }}">
+            <span class="tooltip-text">Click to add to Cart</span>
         </a>
         <h4 class="product-price">Price: {{ product[5] }}.00$</h4>
     </div>
