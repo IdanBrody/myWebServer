@@ -216,3 +216,23 @@ a.logout-button:active {
         visibility: visible;
         opacity: 1;
     }
+
+a.login-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #228B22;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+a.login-button:hover {
+  background-color: #d32f2f;
+}
+
+a.login-button:active {
+  background-color: #b71c1c;
+}

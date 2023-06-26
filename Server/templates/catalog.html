@@ -34,6 +34,8 @@
 <body>
 {% if session.logged_in %}
     <a class="logout-button" href="{{ url_for('logout') }}">Logout</a>
+{% else %}
+    <a class="login-button" href="{{ url_for('login') }}">Login</a>
 {% endif %}
 <div class="header">
     <h1>Catalog</h1>
@@ -44,7 +46,7 @@
     <li><a class="active" href="#catalog">Catalog</a></li>
     <li><a href="/contact">Contact</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="/login">Log-in</a></li>
+    <li><a href="/Cart">Shopping Cart</a></li>
 </ul>
 <br><br>
 
