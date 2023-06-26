@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cart.css') }}">
+</head>
+<body>
+{% if session.logged_in %}
+    <a class="logout-button" href="{{ url_for('logout') }}">Logout</a>
+{% else %}
+    <a class="login-button" href="{{ url_for('login') }}">Login</a>
+{% endif %}
+<div class="header">
+    <h1>Shopping Cart</h1>
+    <h3 class="username">{{ user_name }}</h3>
+</div>
+<ul>
+    <li><a href="/index">Home</a></li>
+    <li><a href="/catalog">Catalog</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a class="active" href="#Cart">Shopping Cart</a></li>
+</ul>
+<br><br>
+<div class="container">
+    {% if session.logged_in %}
+        {% if products|length == 0 %}
+            <h1>Your Cart is empty</h1>
+        {% endif %}
+        {% for product in products %}
+        <div class="image-item">
+            <h4 class="product-name">{{ product[1] }}</h4>
+            <a href="#" onclick="addToCart({{ product[0] }})" class="tooltip">
+                <img src="{{ product[2] }}">
+                <span class="tooltip-text">Click to add to Cart</span>
+            </a>
+            <h4 class="product-price">Price: {{ product[5] }}.00$</h4>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h1>You need to Login first</h1>
+        <a href="/login"></a>
+    {% endif %}
+</div>
+</body>
+</html>

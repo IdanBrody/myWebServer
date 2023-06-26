@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, session
 from Server.Login_SignUp import handle_sign_up, handle_login
-from Server.Cart import add_item_to_cart
-from Server.Cart import add_item_to_cart
+from Server.Cart import add_item_to_cart, checkout
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from Catalog import handle_catalog
 import os
@@ -75,9 +74,9 @@ def add_to_cart():
         return "You must be logged in order to add product to cart"
 
 
-@app.route('/cart', methods=["GET"])
+@app.route('/Cart', methods=["GET"])
 def show_cart():
-    return render_template('cart.html')
+    return checkout()
 
 
 if __name__ == '__main__':

@@ -1,9 +1,19 @@
-from flask import session, redirect, url_for, request
+from flask import session, redirect, url_for, request, render_template
+from Database.MySQL_Connection import connect_to_database
 
 
 def add_item_to_cart(product_id):
     if 'Shopping_Cart' not in session:
         session['Shopping_Cart'] = []
-    session['Shopping_Cart'].append(product_id)
+    connection = connect_to_database()
+    cursor= connection.cursor()
+    query = "SELECT * FROM products WHERE id = {}".format(product_id)
+    cursor.execute(query)
+    session['Shopping_Cart'].append(cursor.fetchone())
     print("shopping cart: ", session['Shopping_Cart'])
     return "Product added successfully"
+
+def checkout():
+    if 'Shopping_Cart' not in session:
+        session['Shopping_Cart'] = []
+    return render_template('cart.html', products=session['Shopping_Cart'])
