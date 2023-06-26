@@ -26,17 +26,16 @@
     {% if session.logged_in %}
         {% if products|length == 0 %}
             <h1>Your Cart is empty</h1>
-        {% endif %}
-        {% for product in products %}
-        <div class="image-item">
-            <h4 class="product-name">{{ product[1] }}</h4>
-            <a href="#" onclick="addToCart({{ product[0] }})" class="tooltip">
+        {% else %}
+            {% for product in products %}
+            <div class="image-item">
+                <h4 class="product-name">{{ product[1] }}</h4>
                 <img src="{{ product[2] }}">
                 <span class="tooltip-text">Click to add to Cart</span>
-            </a>
-            <h4 class="product-price">Price: {{ product[5] }}.00$</h4>
-        </div>
-        {% endfor %}
+                <h4 class="product-price">Price: {{ product[5] }}.00$</h4>
+            </div>
+            {% endfor %}
+        {% endif %}
     {% else %}
         <h1>You need to Login first</h1>
         <a href="/login"></a>

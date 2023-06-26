@@ -16,4 +16,6 @@ def add_item_to_cart(product_id):
 def checkout():
     if 'Shopping_Cart' not in session:
         session['Shopping_Cart'] = []
-    return render_template('cart.html', products=session['Shopping_Cart'])
+    products = session.get("Shopping_Cart")
+    print("products: ", products)
+    return render_template('cart.html', products=products, user_name=session.get("user_name", "Guest"))
