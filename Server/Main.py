@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 from Server.Login_SignUp import handle_sign_up, handle_login
 from Server.Cart import add_item_to_cart, checkout
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
@@ -62,7 +62,7 @@ def contact():
 @app.route('/logout')
 def logout():
     session.clear()  # Clear the session data
-    return render_template('index.html', user_name="Guest")
+    return redirect(url_for('index'))
 
 
 @app.route('/add_to_cart', methods=['POST'])
