@@ -65,9 +65,17 @@ def logout():
     return render_template('index.html', user_name="Guest")
 
 
-@app.route('/add_to_cart')
+@app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    pass
+    if session.get('logged_in'):
+        product_id = request.form.get('product_id')
+        if 'Shopping_Cart' not in session:
+            session['Shopping_Cart'] = []
+        session['Shopping_Cart'].append(product_id)
+        print("shopping cart: ", session['Shopping_Cart'])
+        return "Product added successfully"
+    else:
+        return "You must be logged in to add product to cart"
 
 
 @app.route('Cart', methods=["GET"])

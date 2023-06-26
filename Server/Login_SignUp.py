@@ -12,15 +12,14 @@ def handle_login():
         # Check the credentials using login_user function
         if login_user(username, password):
             # Authentication successful
-            access_token = create_access_token(identity=username)
             session['user_name'] = username
             session['logged_in'] = True
-            session['shopping_cart'] = []
             flash('Login successful!', 'success')
             return redirect(url_for('index'))
         else:
             # Authentication failed
             flash('Invalid username or password. Please try again.', 'error')
+            session['logged_in'] = False
             return redirect(url_for('login'))
 
         # For GET requests, render the login page
