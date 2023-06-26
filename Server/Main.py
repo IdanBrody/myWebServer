@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session
 from Server.Login_SignUp import handle_sign_up, handle_login
+from Server.Cart import add_item_to_cart
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from Catalog import handle_catalog
 import os
@@ -65,8 +66,15 @@ def logout():
 
 
 @app.route('/add_to_cart')
-def add_to_cart():
-    pass
+def add_to_cart(product_id):
+    if 'shopping_cart' not in session:
+        session['shopping_cart'] = []
+    return add_item_to_cart(product_id)
+
+
+@app.route('Cart', methods=["GET"])
+def show_cart():
+    return render_template('cart.html')
 
 
 if __name__ == '__main__':

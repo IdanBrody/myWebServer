@@ -15,7 +15,7 @@ def handle_login():
             access_token = create_access_token(identity=username)
             session['user_name'] = username
             session['logged_in'] = True
-            session['Shopping_Cart'] = []
+            session['shopping_cart'] = []
             flash('Login successful!', 'success')
             return redirect(url_for('index'))
         else:
