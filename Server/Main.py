@@ -66,10 +66,8 @@ def logout():
 
 
 @app.route('/add_to_cart')
-def add_to_cart(product_id):
-    if 'shopping_cart' not in session:
-        session['shopping_cart'] = []
-    return add_item_to_cart(product_id)
+def add_to_cart():
+    pass
 
 
 @app.route('Cart', methods=["GET"])
