@@ -17,8 +17,12 @@ def add_item_to_cart(product_id):
     return "Product added successfully"
 
 def checkout():
+    total_price = 0
     if 'Shopping_Cart' not in session:
         session['Shopping_Cart'] = '[]'
     products = json.loads(session.get("Shopping_Cart"))
+    for product in products:
+        print(product[5])
+        total_price += product[5]
     print("products: ", products)
-    return render_template('cart.html', products=products, user_name=session.get("user_name", "Guest"))
+    return render_template('cart.html', products=products, user_name=session.get("user_name", "Guest"), total_price=total_price)
