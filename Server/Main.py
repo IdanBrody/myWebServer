@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from Server.Login_SignUp import handle_sign_up, handle_login
-from Server.Cart import add_item_to_cart, checkout
+from Server.Cart import add_item_to_cart, checkout, remove_item_from_cart, calculate_total_price, get_products_from_cart
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from Catalog import handle_catalog
 import os
@@ -72,6 +72,19 @@ def add_to_cart():
         return add_item_to_cart(product_id)
     else:
         return "You must be logged in order to add product to cart"
+
+
+@app.route('/remove_from_cart', methods=['POST'])
+def remove_from_cart():
+    if session.get('logged_in'):
+        product_id = request.form.get('product_id')
+        remove_item_from_cart(product_id)
+        products = get_products_from_cart()
+        total_price = calculate_total_price(products)
+        return "Product removed successfully", render_template('cart.html', products=products, user_name=session.get("user_name", "Guest"), total_price=total_price)
+    else:
+        return "You must be logged in order to remove a product from the cart"
+
 
 
 @app.route('/Cart', methods=["GET"])

@@ -3,6 +3,38 @@
 <head>
     <title>Shopping Cart</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cart.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Make sure jQuery is included -->
+
+<script>
+    // JavaScript function to remove a product from the cart
+    function removeFromCart(productId) {
+        $.ajax({
+            url: '/remove_from_cart',
+            method: 'POST',
+            data: {product_id: productId},
+            success: function(response) {
+                alert(response); // Display success message
+                location.reload(); // Reload the page after successful removal
+            },
+            error: function(response) {
+                alert(response); // Display error message
+            }
+        });
+    }
+
+    // Event listener to handle tooltip positioning
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltips = document.querySelectorAll('.tooltip');
+
+        tooltips.forEach(function(tooltip) {
+            tooltip.addEventListener('mousemove', function(e) {
+                var tooltipText = this.querySelector('.tooltip-text');
+                tooltipText.style.top = (e.clientY + 10) + 'px';
+                tooltipText.style.left = (e.clientX + 10) + 'px';
+            });
+        });
+    });
+</script>
 </head>
 <body>
 {% if session.logged_in %}
@@ -30,7 +62,10 @@
             {% for product in products %}
             <div class="image-item">
                 <h4 class="product-name">{{ product[1] }}</h4>
+                <a href="#" onclick="removeFromCart({{ product[0] }})" class="tooltip">
                 <img src="{{ product[2] }}">
+                <span class="tooltip-text">Click to remove from Cart</span>
+                </a>
                 <h4 class="product-price">Price: {{ product[5] }}.00$</h4>
             </div>
             {% endfor %}
