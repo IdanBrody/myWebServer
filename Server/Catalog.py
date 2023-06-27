@@ -11,10 +11,8 @@ def handle_catalog(user_name, category_filter, vendor_filter, gender_filter):
         query += " AND vendor = '{}'".format(vendor_filter)
     if gender_filter:
         query += " AND gender = '{}'".format(gender_filter)
-    print(query)
     connection = connect_to_database()
     cursor = connection.cursor()
     cursor.execute(query)
     products = cursor.fetchall()
-    print(products)
     return render_template('catalog.html', user_name=user_name, products=products, category=category_filter, vendor=vendor_filter, gender=gender_filter)

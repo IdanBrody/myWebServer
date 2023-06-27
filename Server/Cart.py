@@ -17,27 +17,33 @@ def add_item_to_cart(product_id):
 
 
 def remove_item_from_cart(product_id):
-    shopping_cart = json.loads(session.get('Shopping_Cart'))
+    shopping_cart = list(json.loads(session.get('Shopping_Cart')))
+    print(product_id)
+    print(shopping_cart, "\n")
+
     items_to_remove = []
-
     for product in shopping_cart:
-        if product[0] == product_id:
-            shopping_cart.remove(product)
+        if str(product[0]) == str(product_id):
+            items_to_remove.append(product)
 
+    for item in items_to_remove:
+        shopping_cart.remove(item)
     session['Shopping_Cart'] = json.dumps(shopping_cart)
+    print(json.loads(session.get('Shopping_Cart')), "modified")
     return "Product removed successfully"
 
 
 def calculate_total_price(products):
     total_price = 0
     for product in products:
-        total_price += product[5]  # Assuming the price is stored in index 5 of the product list
+        total_price += product[5]
     return total_price
 
 
 def get_products_from_cart():
     products = json.loads(session.get("Shopping_Cart"))
     return products
+
 
 def checkout():
     if 'Shopping_Cart' not in session:
