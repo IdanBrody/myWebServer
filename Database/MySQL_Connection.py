@@ -1,12 +1,14 @@
+import os
+
 import mysql.connector
 
 
 def connect_to_database():
     # MySQL server connection details
-    host = 'localhost'
+    host = os.environ.get('MYSQL_HOST')
     port = 3306
-    username = 'root'
-    password = 'Idan2001!'
+    username = os.environ.get('MYSQL_USER')
+    password = os.environ.get('MYSQL_PASSWORD')
     database = 'shoe_store'
 
     # Establish connection to MySQL server
