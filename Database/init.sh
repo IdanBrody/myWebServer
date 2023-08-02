@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Wait for the MySQL server to be ready
-until mysql -h"$MYSQL_HOST" -u"root" -p"$MYSQL_ROOT_PASSWORD" -e "SELECT 1"; do
+until mysql -u"root" -p"$MYSQL_ROOT_PASSWORD" -e "SELECT 1"; do
   echo "Waiting for MySQL server to be available..."
   sleep 2
 done
