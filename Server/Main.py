@@ -1,5 +1,4 @@
 import json
-
 from flask import Flask, render_template, request, session, redirect, url_for
 from Server.Login_SignUp import handle_sign_up, handle_login
 from Server.Cart import add_item_to_cart, checkout, remove_item_from_cart, calculate_total_price, get_products_from_cart
